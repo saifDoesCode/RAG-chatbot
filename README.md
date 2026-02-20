@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# RAG-chatbot
-=======
 # RAG Chatbot
 
 A fully local, open-source Retrieval-Augmented Generation (RAG) chatbot built with Streamlit. Upload your documents and chat with them using free AI models — no paid API required.
@@ -33,23 +30,23 @@ Then open `http://localhost:8501` in your browser.
 │  ┌─────────────────┐              ┌──────────────────────────────┐  │
 │  │    SIDEBAR      │              │         MAIN CHAT AREA       │  │
 │  │                 │              │                              │  │
-│  │  • Provider     │              │  ┌──────────────────────┐   │  │
-│  │    (Ollama/     │              │  │   Chat History       │   │  │
-│  │     Groq)       │              │  │   + Source Citations │   │  │
-│  │  • Model name   │              │  └──────────────────────┘   │  │
+│  │  • Provider     │              │  ┌──────────────────────┐    │  │
+│  │    (Ollama/     │              │  │   Chat History       │    │  │
+│  │     Groq)       │              │  │   + Source Citations │    │  │
+│  │  • Model name   │              │  └──────────────────────┘    │  │
 │  │  • API key      │              │                              │  │
-│  │  • File upload  │              │  ┌──────────────────────┐   │  │
-│  │  • Process btn  │              │  │   Chat Input Box     │   │  │
-│  └────────┬────────┘              └──────────┬───────────────┘  │  │
-└───────────┼───────────────────────────────────┼─────────────────┘
+│  │  • File upload  │              │  ┌──────────────────────┐    │  │
+│  │  • Process btn  │              │  │   Chat Input Box     │    │  │
+│  └────────┬────────┘              └──────────┬───────────────┘   │  │
+└───────────┼───────────────────────────────────┼───────────────── ┘
             │                                   │
             ▼                                   ▼
-┌───────────────────────────────────────────────────────────────────┐
-│                      RAG ENGINE (rag_engine.py)                   │
-│                                                                   │
+┌──────────────────────────────────────────────────────────────────┐
+│                      RAG ENGINE (rag_engine.py)                  │
+│                                                                  │
 │   INGESTION PIPELINE                  QUERY PIPELINE             │
 │   ──────────────────                  ──────────────             │
-│                                                                   │
+│                                                                  │
 │   PDF / TXT / DOCX                    User Question              │
 │         │                                   │                    │
 │         ▼                                   ▼                    │
@@ -64,23 +61,23 @@ Then open `http://localhost:8501` in your browser.
 │   │  Chunker  │                    │  Search (k=4)   │           │
 │   │ 1000 char │                    └────────┬────────┘           │
 │   │ 200 overlap│                            │                    │
-│   └─────┬─────┘                            ▼                    │
-│         │                         ┌──────────────────┐          │
-│         ▼                         │  Top-4 Relevant  │          │
-│   ┌───────────┐                   │     Chunks       │          │
-│   │  Embed    │                   └────────┬─────────┘          │
-│   │  Chunks   │                            │                    │
-│   │ (MiniLM)  │                            ▼                    │
-│   └─────┬─────┘               ┌────────────────────────┐        │
-│         │                     │  Build Prompt           │        │
-│         ▼                     │  ┌────────────────────┐ │        │
-│   ┌───────────┐               │  │ System: Context    │ │        │
-│   │   FAISS   │               │  │ History: past msgs │ │        │
-│   │  Vector   │               │  │ Human: question    │ │        │
-│   │   Store   │               │  └────────────────────┘ │        │
-│   └───────────┘               └────────────┬───────────┘        │
-│                                            │                    │
-└────────────────────────────────────────────┼────────────────────┘
+│   └─────┬─────┘                            ▼                     │
+│         │                         ┌──────────────────┐           │
+│         ▼                         │  Top-4 Relevant  │           │
+│   ┌───────────┐                   │     Chunks       │           │
+│   │  Embed    │                   └────────┬─────────┘           │
+│   │  Chunks   │                            │                     │
+│   │ (MiniLM)  │                            ▼                     │
+│   └─────┬─────┘               ┌────────────────────────┐         │
+│         │                     │  Build Prompt          │         │
+│         ▼                     │  ┌────────────────────┐│         │
+│   ┌───────────┐               │  │ System: Context    ││         │
+│   │   FAISS   │               │  │ History: past msgs ││         │
+│   │  Vector   │               │  │ Human: question    │          │
+│   │   Store   │               │  └────────────────────┘│         │
+│   └───────────┘               └────────────┬───────────┘         │
+│                                            │                     │
+└────────────────────────────────────────────┼──────────────────── ┘
                                              │
                     ┌────────────────────────┘
                     │
